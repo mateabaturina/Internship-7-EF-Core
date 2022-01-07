@@ -1,8 +1,8 @@
 ﻿namespace StackInternship.Data.Entities.Enums
 {
-    public enum UserRole
+    public enum Vote
     {
-        Organizator,
-        Intern
+        UpVote = 1,
+        DownVote = 2
     }
 }

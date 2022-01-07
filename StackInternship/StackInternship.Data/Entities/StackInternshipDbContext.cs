@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using System.IO;
 using System.Linq;
 using DbContext = Microsoft.EntityFrameworkCore.DbContext;
+using StackInternship.Data.Entities.Models;
+using StackInternship.Data.Seeds;
 
 namespace StackInternship.Data.Entities
 {
@@ -13,8 +15,43 @@ namespace StackInternship.Data.Entities
         {
         }
 
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Resource> Resources { get; set; }
+        public DbSet<User> Users { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder
+                .Entity<Resource>()
+                .HasOne(c => c.User)
+                .WithMany(u => u.Resources)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder
+                .Entity<Comment>()
+                .HasOne(c => c.User)
+                .WithMany(u => u.Comments)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder
+                .Entity<Comment>()
+                .HasOne(c => c.Resource)
+                .WithMany(u => u.Comments)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder
+                .Entity<Answer>()
+                .HasOne(a => a.Comment)
+                .WithMany(c => c.Answers)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder
+                .Entity<Answer>()
+                .HasOne(a => a.User)
+                .WithMany(u => u.Answers)
+                .OnDelete(DeleteBehavior.NoAction);
+
             //DatabaseSeeder.Execute(modelBuilder);
             base.OnModelCreating(modelBuilder);
         }
@@ -32,7 +69,7 @@ namespace StackInternship.Data.Entities
             configuration
                 .Providers
                 .First()
-                .TryGet("connectionString:add:StackInternship:connectionString", out var connectionString);
+                .TryGet("connectionStrings:add:StackInternship:connectionString", out var connectionString);
 
             var options = new DbContextOptionsBuilder<StackInternshipDbContext>()
                 .UseSqlServer(connectionString)

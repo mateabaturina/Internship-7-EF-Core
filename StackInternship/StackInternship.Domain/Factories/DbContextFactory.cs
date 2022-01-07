@@ -9,7 +9,7 @@ namespace StackInternship.Domain.Factories
         public static StackInternshipDbContext GetPaymentManagerDbContext()
         {
             var options = new DbContextOptionsBuilder()
-                .UseSqlServer(ConfigurationManager.ConnectionStrings["StackInetrnship"].ConnectionString)
+                .UseSqlServer(ConfigurationManager.ConnectionStrings["StackInternship"].ConnectionString)
                 .Options;
 
             return new StackInternshipDbContext(options);
