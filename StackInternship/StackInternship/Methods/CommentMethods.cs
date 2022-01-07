@@ -75,6 +75,17 @@ namespace StackInternship.Presentation.Methods
                     break;
 
                 case "6":
+                    if (count >= 100000)
+                        CreateNewResource();
+
+                    else
+                    {
+                        Console.WriteLine("Nemoguće je obaviti željenu radnju! Imate premalo bodova.");
+                        Console.ReadLine();
+                    }
+                    break;
+
+                case "7":
                     break;
             }
         }
@@ -93,6 +104,9 @@ namespace StackInternship.Presentation.Methods
                 .ForEach(c => {
                     c.UpVote += 1;
                 });
+
+            Console.WriteLine("Uspješno izvršeno!");
+            Console.ReadLine();
         }
 
         public static void DownVoteComment()
@@ -109,6 +123,9 @@ namespace StackInternship.Presentation.Methods
                 .ForEach(c => {
                     c.DownVote -= 1;
                 });
+
+            Console.WriteLine("Uspješno izvršeno!");
+            Console.ReadLine();
         }
 
         public static void EditComment()
@@ -128,6 +145,9 @@ namespace StackInternship.Presentation.Methods
                 .ForEach(c => {
                     c.Text = newText;
                 });
+
+            Console.WriteLine("Uspješno izvršeno!");
+            Console.ReadLine();
         }
 
         public static void DeleteComment()
@@ -138,6 +158,9 @@ namespace StackInternship.Presentation.Methods
             int id = Convert.ToInt32(idComment);
 
             RepositoryFactory.Create<CommentRepository>().Delete(id);
+
+            Console.WriteLine("Uspješno izvršeno!");
+            Console.ReadLine();
         }
 
         public static void CreateNewComment()
@@ -152,6 +175,21 @@ namespace StackInternship.Presentation.Methods
             var newComment = new Comment(text, id);
 
             RepositoryFactory.Create<CommentRepository>().Add(newComment);
+
+            Console.WriteLine("Uspješno izvršeno!");
+            Console.ReadLine();
+        }
+
+        public static void CreateNewResource()
+        {
+            var text = ValidateMethods.TextInput();
+
+            var newResource = new Resource(text);
+
+            RepositoryFactory.Create<ResourceRepository>().Add(newResource);
+
+            Console.WriteLine("Uspješno izvršeno!");
+            Console.ReadLine();
         }
     }
 }

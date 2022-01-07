@@ -13,19 +13,28 @@ namespace StackInternship.Presentation.Methods
         {
             PrintMethods.PrintLoginInput();
 
+            var showMenu = true;
+            while (showMenu)
+            {
+                showMenu = MainMenu();
+            }
+        }
+
+        public static bool MainMenu()
+        { 
             switch (Console.ReadLine())
             {
                 case "1":
                     RegisterInput();
-                    break;
+                    return true;
                 case "2":
                     LoginInput();
-                    break;
+                    return true;
                 case "3":
                     Console.WriteLine("Izašli ste iz aplikacije. Doviđenja!");
-                    break;
+                    return false;
                 default:
-                    break;
+                    return true;
             }
         }
 
@@ -58,7 +67,7 @@ namespace StackInternship.Presentation.Methods
             switch (Console.ReadLine())
             {
                 case "1":
-                    ChooseAreaMenu();
+                    ChooseAreaMenu(userName);
                     break;
                 case "2":
                     Users();
@@ -77,7 +86,7 @@ namespace StackInternship.Presentation.Methods
             }
         }
 
-        private static void ChooseAreaMenu()
+        private static void ChooseAreaMenu(string userName)
         {
             PrintMethods.AreaMenu();
             
@@ -85,24 +94,24 @@ namespace StackInternship.Presentation.Methods
             {   
 
                 case "1":
-                    PublishedResources(Area.Dev);
+                    PublishedResources(Area.Dev, userName);
                     break;
                 case "2":
-                    PublishedResources(Area.Dizajn);
+                    PublishedResources(Area.Dizajn, userName);
                     break;
                 case "3":
-                    PublishedResources(Area.Marketing);
+                    PublishedResources(Area.Marketing, userName);
                     break;
                 case "4":
-                    PublishedResources(Area.Multimedija);
+                    PublishedResources(Area.Multimedija, userName);
                     break;
                 case "5":
-                    PublishedResources(Area.Generalno);
+                    PublishedResources(Area.Generalno, userName);
                     break;
             }
         }
 
-        private static void PublishedResources(Area chosenArea)
+        private static void PublishedResources(Area chosenArea, string userName)
         {   
             Console.Clear();
 
@@ -120,6 +129,7 @@ namespace StackInternship.Presentation.Methods
                         $" DownVote: {c.DownVote} " +
                         $" Komentari: {c.Comments}\n");
                 });
+            CommentMethods.ChooseCommentActionMenu(userName);
         }
 
         private static void Users()

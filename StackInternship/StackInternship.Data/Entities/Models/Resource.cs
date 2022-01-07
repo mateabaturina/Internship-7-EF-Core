@@ -16,5 +16,18 @@ namespace StackInternship.Data.Entities.Models
         public int DownVote { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
+
+        public Resource()
+        {
+        }
+
+        public Resource(string text)
+        {
+
+            Content = text;
+            DateOfPublication = DateTime.Now;
+            UpVote = 0;
+            DownVote = 0;
+        }
     }
 }

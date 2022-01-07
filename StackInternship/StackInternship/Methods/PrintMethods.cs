@@ -69,7 +69,6 @@ namespace StackInternship.Presentation.Methods
 
         public static void EditCommentMenu()
         {
-            Console.Clear();
 
             Console.WriteLine("Odaberite željenu radnju:");
             Console.WriteLine();
@@ -78,7 +77,8 @@ namespace StackInternship.Presentation.Methods
             Console.WriteLine("3 - Uređivanje komentara");
             Console.WriteLine("4 - Brisanje komentara");
             Console.WriteLine("5 - Kreiranje novog komentara");
-            Console.WriteLine("6 - Povratak na izbornik");
+            Console.WriteLine("6 - Kreiranje nove objave");
+            Console.WriteLine("7 - Povratak na izbornik");
             Console.Write("\r\nUnesite odabir: ");
         }
     }
