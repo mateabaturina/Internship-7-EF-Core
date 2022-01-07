@@ -72,6 +72,8 @@ namespace StackInternship.Presentation.Methods
                 case "5":
                     MyProfile(userName);
                     break;
+                default:
+                    break;
             }
         }
 

@@ -30,7 +30,7 @@ namespace StackInternship.Presentation.Methods
                 var context = DbContextFactory.GetStackInternshipDbContext();
                 if (context.Users.Any(c => c.UserName == name))
                 {
-                    Console.WriteLine("Korisnik s tim korisničkim imenom ne postoji! Molim vas ponovo unesite.");
+                    Console.WriteLine("Korisnik s tim korisničkim imenom već postoji! Molim vas ponovo unesite.");
                     Console.Write("\r\nUnesite korisničko ime: ");
                     name = Console.ReadLine();
                 }
@@ -42,7 +42,25 @@ namespace StackInternship.Presentation.Methods
             return name;
         }
 
-        public static string NameInput()
+        private static string CheckingIfUserNameIsValid(string name)
+        {
+            while (true)
+            {
+                var context = DbContextFactory.GetStackInternshipDbContext();
+                if (context.Users.Any(c => c.UserName == name))
+                    break;
+
+                else
+                {
+                    Console.WriteLine("Korisnik s tim korisničkim imenom ne postoji! Molim vas ponovo unesite.");
+                    Console.Write("\r\nUnesite korisničko ime: ");
+                    name = Console.ReadLine();
+                }       
+            }
+            return name;
+        }
+
+        public static string NameInputRegistration()
         {
             Console.Write("\r\nUnesite korisničko ime: ");
             var name = Console.ReadLine();
@@ -53,12 +71,13 @@ namespace StackInternship.Presentation.Methods
             return name;
         }
 
-        public static string NameInputRegistration()
+        public static string NameInput()
         {
             Console.Write("\r\nUnesite korisničko ime: ");
             var name = Console.ReadLine();
 
             name = CheckingNameInput(name);
+            name = CheckingIfUserNameIsValid(name);
 
             return name;
         }
