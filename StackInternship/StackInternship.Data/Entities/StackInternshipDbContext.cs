@@ -52,7 +52,7 @@ namespace StackInternship.Data.Entities
                 .WithMany(u => u.Answers)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            //DatabaseSeeder.Execute(modelBuilder);
+            DatabaseSeeder.Execute(modelBuilder);
             base.OnModelCreating(modelBuilder);
         }
     }
