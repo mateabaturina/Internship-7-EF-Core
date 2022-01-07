@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using StackInternship.Data.Entities.Enums;
 
 namespace StackInternship.Data.Entities.Models
@@ -32,6 +28,8 @@ namespace StackInternship.Data.Entities.Models
             UserName = name;
             Password = password;
             ReputationPoints = 1;
+            ReputationalPrivilege = ReputationalPrivilege.None;
+            AccountStatus = AccountStatus.Aktivan;
         }
     }
 }

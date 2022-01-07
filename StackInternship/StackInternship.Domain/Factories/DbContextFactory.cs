@@ -6,7 +6,7 @@ namespace StackInternship.Domain.Factories
 {
     public static class DbContextFactory
     {
-        public static StackInternshipDbContext GetPaymentManagerDbContext()
+        public static StackInternshipDbContext GetStackInternshipDbContext()
         {
             var options = new DbContextOptionsBuilder()
                 .UseSqlServer(ConfigurationManager.ConnectionStrings["StackInternship"].ConnectionString)

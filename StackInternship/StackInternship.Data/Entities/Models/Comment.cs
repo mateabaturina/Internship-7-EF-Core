@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StackInternship.Data.Entities.Models
 {
@@ -19,5 +16,19 @@ namespace StackInternship.Data.Entities.Models
         public int DownVote { get; set; }
 
         public ICollection<Answer> Answers { get; set; }
+
+        public Comment()
+        {
+        }
+
+        public Comment(string text, int resourceId)
+        {
+
+            Text = text;
+            ResourceId = resourceId;
+            DateOfPublication = DateTime.Now;
+            UpVote = 0;
+            DownVote = 0;
+        }
     }
 }

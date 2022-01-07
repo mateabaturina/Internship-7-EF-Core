@@ -1,4 +1,4 @@
-﻿using System;
+﻿using StackInternship.Presentation.Methods;
 
 namespace StackInternship
 {
@@ -6,7 +6,7 @@ namespace StackInternship
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            MainMethods.UserInput();
         }
     }
 }

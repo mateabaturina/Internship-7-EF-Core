@@ -55,6 +55,11 @@ namespace StackInternship.Data.Entities
             DatabaseSeeder.Execute(modelBuilder);
             base.OnModelCreating(modelBuilder);
         }
+
+        public bool Any(System.Func<object, bool> p)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
     public class StackInternshipContextFactory : IDesignTimeDbContextFactory<StackInternshipDbContext>
